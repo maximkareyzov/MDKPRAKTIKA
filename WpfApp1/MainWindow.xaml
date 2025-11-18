@@ -1,0 +1,148 @@
+﻿<Window x:Class="VigenereCipher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Шифратор/Дешифратор - Двойное шифрование" 
+        Height="700" Width="900">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Grid.Row="0" Text="ДВОЙНОЕ ШИФРОВАНИЕ: ВИЖЕНЕР + ЦЕЗАРЬ" 
+                   FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <TabControl Grid.Row="1">
+ 
+            <TabItem Header="Шифрование">
+                <ScrollViewer>
+                    <StackPanel Margin="10">
+
+                        <GroupBox Header="Исходный текст">
+                            <TextBox Name="OriginalTextTextBox" Height="80" TextWrapping="Wrap" 
+                                     AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+                        </GroupBox>
+
+
+                        <GroupBox Header="Ключи шифрования" Margin="0,10,0,0">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <TextBlock Text="Ключ Виженера:" Width="150" VerticalAlignment="Center"/>
+                                    <TextBox Name="VigenereKeyTextBox" Width="300" 
+                                             ToolTip="Текстовый ключ для шифра Виженера"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <TextBlock Text="Ключ Цезаря:" Width="150" VerticalAlignment="Center"/>
+                                    <TextBox Name="CaesarKeyTextBox" Width="300" 
+                                             ToolTip="Числовой ключ для шифра Цезаря"/>
+                                </StackPanel>
+                                <TextBlock Text="Автоматическая последовательность: Виженер → Цезарь" 
+                                           Margin="0,10" FontWeight="Bold" Foreground="Blue"/>
+                            </StackPanel>
+                        </GroupBox>
+
+
+                        <GroupBox Header="Процесс шифрования" Margin="0,10,0,0">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <TextBlock Text="1. После шифра Виженера:" Width="200" VerticalAlignment="Center"/>
+                                    <TextBox Name="AfterVigenereTextBox" Width="400" IsReadOnly="True" 
+                                             Background="LightYellow" Height="60" TextWrapping="Wrap"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <TextBlock Text="2. После шифра Цезаря:" Width="200" VerticalAlignment="Center"/>
+                                    <TextBox Name="AfterCaesarTextBox" Width="400" IsReadOnly="True" 
+                                             Background="LightGreen" Height="60" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+
+                        <Button Name="EncryptButton" Content="Зашифровать двумя методами" 
+                                Click="EncryptButton_Click" Margin="0,20,0,0" Height="35" 
+                                FontSize="14" FontWeight="Bold" Background="LightBlue"/>
+
+ 
+                        <GroupBox Header="Финальный зашифрованный текст" Margin="0,15,0,0">
+                            <TextBox Name="EncryptedTextTextBox" Height="80" TextWrapping="Wrap" 
+                                     IsReadOnly="True" Background="LightCoral" FontWeight="Bold"
+                                     VerticalScrollBarVisibility="Auto"/>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+
+            <TabItem Header="Дешифрование">
+                <ScrollViewer>
+                    <StackPanel Margin="10">
+
+                        <GroupBox Header="Зашифрованный текст">
+                            <TextBox Name="EncryptedForDecryptTextBox" Height="80" TextWrapping="Wrap" 
+                                     AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+                        </GroupBox>
+
+
+                        <GroupBox Header="Ключи дешифрования" Margin="0,10,0,0">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <TextBlock Text="Ключ Виженера:" Width="150" VerticalAlignment="Center"/>
+                                    <TextBox Name="DecryptVigenereKeyTextBox" Width="300" 
+                                             ToolTip="Текстовый ключ для шифра Виженера"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <TextBlock Text="Ключ Цезаря:" Width="150" VerticalAlignment="Center"/>
+                                    <TextBox Name="DecryptCaesarKeyTextBox" Width="300" 
+                                             ToolTip="Числовой ключ для шифра Цезаря"/>
+                                </StackPanel>
+                                <TextBlock Text="Автоматическая последовательность: Цезарь → Виженер" 
+                                           Margin="0,10" FontWeight="Bold" Foreground="Blue"/>
+                            </StackPanel>
+                        </GroupBox>
+
+
+                        <GroupBox Header="Процесс дешифрования" Margin="0,10,0,0">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <TextBlock Text="1. После дешифрования Цезаря:" Width="200" VerticalAlignment="Center"/>
+                                    <TextBox Name="AfterCaesarDecryptTextBox" Width="400" IsReadOnly="True" 
+                                             Background="LightYellow" Height="60" TextWrapping="Wrap"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <TextBlock Text="2. После дешифрования Виженера:" Width="200" VerticalAlignment="Center"/>
+                                    <TextBox Name="AfterVigenereDecryptTextBox" Width="400" IsReadOnly="True" 
+                                             Background="LightGreen" Height="60" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+
+                        <Button Name="DecryptButton" Content="Расшифровать двумя методами" 
+                                Click="DecryptButton_Click" Margin="0,20,0,0" Height="35"
+                                FontSize="14" FontWeight="Bold" Background="LightGreen"/>
+
+ 
+                        <GroupBox Header="Финальный расшифрованный текст" Margin="0,15,0,0">
+                            <TextBox Name="DecryptedTextTextBox" Height="80" TextWrapping="Wrap" 
+                                     IsReadOnly="True" Background="LightBlue" FontWeight="Bold"
+                                     VerticalScrollBarVisibility="Auto"/>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+            <Button Name="ClearAllButton" Content="Очистить все" 
+                    Click="ClearAllButton_Click" Margin="5" Width="120" Height="30"/>
+            <Button Name="CopyEncryptedButton" Content="Копировать зашифрованный" 
+                    Click="CopyEncryptedButton_Click" Margin="5" Width="170" Height="30"/>
+            <Button Name="PasteForDecryptButton" Content="Вставить для расшифровки" 
+                    Click="PasteForDecryptButton_Click" Margin="5" Width="170" Height="30"/>
+           
+        </StackPanel>
+    </Grid>
+</Window>
