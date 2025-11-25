@@ -1,0 +1,77 @@
+﻿
+<Window x:Class="A1Z26Cipher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Шифр A1Z26  - Русский алфавит" Height="500" Width="800"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Times New Roman">
+    <Grid Margin="10" Background="AliceBlue">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="ШИФР A1Z26 - РУССКИЙ АЛФАВИТ" 
+           FontSize="20" FontWeight="Bold" 
+           HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <GroupBox Grid.Row="1" Grid.Column="0" Header="Исходное сообщение" Margin="0,0,5,5">
+            <TextBox x:Name="txtInput" 
+                     TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                     FontSize="14"/>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Grid.Column="0" Header="Ключ" Margin="0,5,5,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Сдвиг:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox x:Name="txtShift" Text="0" Width="60" VerticalAlignment="Center"/>
+                    <Button x:Name="btnGenerateKey" Content="Сгенерировать ключ" 
+                            Click="BtnGenerateKey_Click" Margin="10,0,0,0" Padding="8,3"/>
+                </StackPanel>
+                <TextBox Grid.Row="1" x:Name="txtKey" 
+                         TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                         FontSize="12" IsReadOnly="True" Background="#FFF8F8F8"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Результат" Margin="5,0,0,5">
+            <TextBox x:Name="txtOutput" 
+                     TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                     FontSize="14" IsReadOnly="True" Background="#FFF0F0F0"/>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Grid.Column="1" Header="Зашифрованные данные" Margin="5,5,0,0">
+            <TextBox x:Name="txtEncryptedData" 
+                     TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                     FontSize="12" Background="#FFF5F5F5"/>
+        </GroupBox>
+
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,29,0,0" Width="420">
+            <Button x:Name="btnEncrypt" Content=" Зашифровать" 
+                    Click="BtnEncrypt_Click" Margin="5" Padding="15,8" FontSize="14"
+                    Background="DarkGreen"/>
+            <Button x:Name="btnDecrypt" Content=" Расшифровать" 
+                    Click="BtnDecrypt_Click" Margin="5" Padding="15,8" FontSize="14"
+                    Background="Aqua"/>
+            <Button x:Name="btnClear" Content="Очистить" 
+                    Click="BtnClear_Click" Margin="5" Padding="15,8" FontSize="14"
+                    Background="WhiteSmoke" Width="120"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="3" Text="А=1, Б=2, В=3, ..., Я=33" 
+                   FontStyle="Italic" Foreground="Gray" Margin="235,0,0,7" 
+                   HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Height="15" Width="130"/>
+    </Grid>
+</Window>
